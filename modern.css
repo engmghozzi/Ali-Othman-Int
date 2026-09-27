@@ -1,4 +1,7 @@
 /* Shared Arabic and English visual system. */
+.card.service-card{padding-top:0}
+.service-photo{display:block;width:calc(100% + 68px);max-width:none;height:auto;aspect-ratio:8/5;object-fit:cover;margin:0 -34px 26px}
+@media(max-width:600px){.service-photo{width:calc(100% + 50px);margin-inline:-25px;margin-bottom:22px}}
 .contact-form{max-width:900px;margin:0 auto 36px}.contact-form h2{font-size:1.8rem}.contact-form .lead{margin-bottom:26px}
 .form-field{display:flex;flex-direction:column;gap:8px;margin-bottom:22px;min-width:0}
 .form-field label,.address-fields legend{font-weight:600;color:#102b46}

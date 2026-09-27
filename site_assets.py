@@ -39,6 +39,17 @@ def enhance(html, lang, page):
     html = html.replace('<span class="mark">ع</span>', LOGO)
     html = re.sub(r'<link rel="icon"[^>]+>', '<link rel="icon" type="image/png" href="/assets/ao-logo.png">', html)
     html = html.replace('<span>Kuwait · الكويت</span>', social_links(lang) + '<span>Kuwait · الكويت</span>')
+    if page == 2:
+        pictures = [
+            ('ac', 'فني يصون وحدة تكييف داخلية', 'Technician maintaining an indoor air conditioning unit'),
+            ('duct', 'صيانة وحدة التهوية السقفية', 'Maintenance of a ceiling ventilation unit'),
+            ('electrical', 'فحص القواطع في لوحة كهربائية', 'Inspecting circuit breakers in an electrical panel'),
+            ('plumbing', 'تمديدات وصمامات ومقاييس ضغط المياه', 'Water pipes, valves and pressure gauges'),
+        ]
+        for n, (asset, arabic, english) in enumerate(pictures, 1):
+            original = f'<article class="card"><span class="num">0{n}</span>'
+            picture = f'<img class="service-photo" src="/assets/service-{asset}.jpg" alt="{arabic if lang == "ar" else english}" width="640" height="400" loading="lazy" decoding="async">'
+            html = html.replace(original, f'<article class="card service-card">{picture}<span class="num">0{n}</span>', 1)
     if page == 3:
         html = html.replace('<div class="detail">', contact_form(lang) + '<div class="detail">', 1)
         heading = 'تابعنا وتواصل معنا' if lang == 'ar' else 'Follow us and get in touch'

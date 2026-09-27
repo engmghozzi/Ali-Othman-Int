@@ -43,4 +43,4 @@ def enhance(html, lang, page):
         html = html.replace('</section>', f'<div class="wrap social-contact"><h2>{heading}</h2>{social_links(lang, True)}</div></section>', 1)
     if page == 4:
         html = html.replace('<div class="noprint"><button', brochures(lang) + '<div class="noprint print-summary"><button', 1)
-    return html
+    return html.replace('Kuwait · الكويت', 'Kuwait · <span lang="ar">الكويت</span>')

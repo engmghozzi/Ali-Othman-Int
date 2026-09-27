@@ -1,4 +1,11 @@
 /* Shared Arabic and English visual system. */
+@font-face{font-family:Cairo;font-style:normal;font-weight:400;font-display:swap;src:url('/assets/fonts/cairo-400.ttf') format('truetype')}
+@font-face{font-family:Cairo;font-style:normal;font-weight:500;font-display:swap;src:url('/assets/fonts/cairo-500.ttf') format('truetype')}
+@font-face{font-family:Cairo;font-style:normal;font-weight:600;font-display:swap;src:url('/assets/fonts/cairo-600.ttf') format('truetype')}
+@font-face{font-family:Cairo;font-style:normal;font-weight:700;font-display:swap;src:url('/assets/fonts/cairo-700.ttf') format('truetype')}
+@font-face{font-family:Cairo;font-style:normal;font-weight:800;font-display:swap;src:url('/assets/fonts/cairo-800.ttf') format('truetype')}
+html:lang(ar) body,:lang(ar){font-family:Cairo,'Segoe UI',Tahoma,Arial,sans-serif}
+html:lang(ar) button,html:lang(ar) input,html:lang(ar) select,html:lang(ar) textarea{font-family:inherit}
 .brand-logo{width:72px;height:72px;object-fit:contain;flex:none;background:#fff;border-radius:8px}
 .social-links{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .social-links a{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-width:44px;min-height:44px;border:1px solid #ffffff40;border-radius:12px;transition:background .2s,transform .2s}

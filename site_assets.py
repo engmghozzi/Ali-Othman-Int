@@ -36,6 +36,7 @@ def brochures(lang):
 
 def enhance(html, lang, page):
     import re
+    html = html.replace('</body>', '<script src="/motion.js" defer></script></body>')
     html = html.replace('<span class="mark">ع</span>', LOGO)
     html = re.sub(r'<link rel="icon"[^>]+>', '<link rel="icon" type="image/png" href="/assets/ao-logo.png">', html)
     html = html.replace('<span>Kuwait · الكويت</span>', social_links(lang) + '<span>Kuwait · الكويت</span>')

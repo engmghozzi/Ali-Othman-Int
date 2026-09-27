@@ -1,4 +1,13 @@
 /* Shared Arabic and English visual system. */
+.contact-form{max-width:900px;margin:0 auto 36px}.contact-form h2{font-size:1.8rem}.contact-form .lead{margin-bottom:26px}
+.form-field{display:flex;flex-direction:column;gap:8px;margin-bottom:22px;min-width:0}
+.form-field label,.address-fields legend{font-weight:600;color:#102b46}
+.form-field input,.form-field textarea{width:100%;border:1px solid #b7c9de;border-radius:10px;padding:12px 14px;background:#fff;color:#102b46;font:inherit;min-height:50px}
+.form-field textarea{resize:vertical;min-height:140px}.form-field input::placeholder{color:#617287;opacity:1}
+.form-field input:focus,.form-field textarea:focus{outline:3px solid #125bc428;border-color:#125bc4}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 22px}.address-fields{border:1px solid #d5e1ef;border-radius:12px;padding:18px 20px 0;margin:0 0 22px;min-width:0}.address-fields legend{padding:0 8px}
+.form-note{font-size:.875rem;color:#52677e;line-height:1.9;margin:0 0 22px}.form-trap{display:none}.contact-form button{font-family:inherit;cursor:pointer}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr}.address-fields{padding-inline:14px}.contact-form{padding:22px}.contact-form .btn{width:100%}}
 @font-face{font-family:Cairo;font-style:normal;font-weight:400;font-display:swap;src:url('/assets/fonts/cairo-400.ttf') format('truetype')}
 @font-face{font-family:Cairo;font-style:normal;font-weight:500;font-display:swap;src:url('/assets/fonts/cairo-500.ttf') format('truetype')}
 @font-face{font-family:Cairo;font-style:normal;font-weight:600;font-display:swap;src:url('/assets/fonts/cairo-600.ttf') format('truetype')}

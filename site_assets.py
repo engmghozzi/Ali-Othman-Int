@@ -1,4 +1,5 @@
 from html import escape
+from contact_form import contact_form
 
 LOGO = '<img class="brand-logo" src="/assets/ao-logo.png" width="72" height="72" alt="">'
 
@@ -39,6 +40,7 @@ def enhance(html, lang, page):
     html = re.sub(r'<link rel="icon"[^>]+>', '<link rel="icon" type="image/png" href="/assets/ao-logo.png">', html)
     html = html.replace('<span>Kuwait · الكويت</span>', social_links(lang) + '<span>Kuwait · الكويت</span>')
     if page == 3:
+        html = html.replace('<div class="detail">', contact_form(lang) + '<div class="detail">', 1)
         heading = 'تابعنا وتواصل معنا' if lang == 'ar' else 'Follow us and get in touch'
         html = html.replace('</section>', f'<div class="wrap social-contact"><h2>{heading}</h2>{social_links(lang, True)}</div></section>', 1)
     if page == 4:

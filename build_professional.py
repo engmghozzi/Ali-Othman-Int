@@ -62,7 +62,7 @@ def services(lang):
 
 def contact(lang):
  t=COPY[lang]
- return heading(lang,t['contact_title'],t['contact_intro'],t['nav'][3])+f'''<section class="section"><div class="container contact-layout"><aside class="contact-info"><span class="eyebrow">{t['name']}</span><h2>{t['nav'][3]}</h2><div class="contact-item"><span>{t['phone']}</span><a class="big-phone" dir="ltr" href="tel:+96522092040">+965 2209 2040</a><a href="https://wa.me/96522092040" class="text-link">{t['whatsapp']}{arrow()}</a></div><div class="contact-item"><span>{t['email']}</span><a href="mailto:info@aliandothman.com.kw">info@aliandothman.com.kw</a><a href="mailto:aliothmanintl@gmail.com">aliothmanintl@gmail.com</a></div><div class="contact-item"><span>{t['address']}</span><p>{t['address_text']}</p></div>{social_links(lang,True)}</aside>{contact_form(lang)}</div></section>'''
+ return heading(lang,t['contact_title'],t['contact_intro'],t['nav'][3])+f'''<section class="section"><div class="container contact-layout"><aside class="contact-info"><span class="eyebrow">{t['name']}</span><h2>{t['nav'][3]}</h2><div class="contact-item"><span>{t['phone']}</span><a class="big-phone" dir="ltr" href="tel:+96522092040">+965 2209 2040</a><a href="https://wa.me/96522092040" class="text-link">{t['whatsapp']}{arrow()}</a></div><div class="contact-item"><span>{t['email']}</span><a href="mailto:info@aliandothman.com.kw">info@aliandothman.com.kw</a></div><div class="contact-item"><span>{t['address']}</span><p>{t['address_text']}</p></div>{social_links(lang,True)}</aside>{contact_form(lang)}</div></section>'''
 
 def brochures(lang):
  t=COPY[lang]; result=[]

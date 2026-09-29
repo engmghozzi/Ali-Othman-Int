@@ -30,6 +30,7 @@ def contact_form(lang):
     return f'''<div class="contact-form panel">
       <h2>{heading}</h2><p class="lead">{intro}</p>
       <form action="/submit.php" method="POST" accept-charset="UTF-8">
+        <input type="hidden" name="_lang" value="{lang}">
         <input type="hidden" name="_subject" value="طلب اتصال جديد | Ali &amp; Othman Website Enquiry">
         <input type="hidden" name="_template" value="table">
         <input type="text" name="_honey" class="form-trap" tabindex="-1" autocomplete="off" aria-hidden="true">

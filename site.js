@@ -1,4 +1,17 @@
 (() => {
+  const query = new URLSearchParams(location.search);
+  if (query.get('sent') === '1') {
+    const ar = document.documentElement.lang === 'ar';
+    const form = document.querySelector('.contact-form');
+    if (form) {
+      const status = document.createElement('div');
+      status.className = 'form-status form-status-success';
+      status.setAttribute('role', 'status');
+      status.textContent = ar ? 'تم إرسال طلبك بنجاح. سنتواصل معك قريبًا.' : 'Your enquiry was sent successfully. We will contact you soon.';
+      form.prepend(status);
+    }
+    history.replaceState({}, '', location.pathname);
+  }
   const menu = document.querySelector('.menu-toggle');
   const nav = document.querySelector('#main-navigation');
   if (menu && nav) {

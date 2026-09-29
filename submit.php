@@ -1,7 +1,8 @@
 <?php
 declare(strict_types=1);
 $recipient = 'aliothmanintl@gmail.com';
-$redirect = '/ar/contact/?sent=1';
+$lang = (($_POST['_lang'] ?? 'ar') === 'en') ? 'en' : 'ar';
+$redirect = '/'.$lang.'/contact/?sent=1';
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') { http_response_code(405); exit('Method Not Allowed'); }
 if (!empty($_POST['_honey'] ?? '')) { header('Location: '.$redirect, true, 303); exit; }
 $fields = [

@@ -1,6 +1,7 @@
 @font-face{font-family:Cairo;src:url('/assets/fonts/cairo-400.ttf') format('truetype');font-weight:400;font-display:swap}
 @font-face{font-family:Cairo;src:url('/assets/fonts/cairo-500.ttf') format('truetype');font-weight:500;font-display:swap}
 @font-face{font-family:Cairo;src:url('/assets/fonts/cairo-600.ttf') format('truetype');font-weight:600;font-display:swap}
+.form-status{padding:14px 16px;margin-bottom:22px;border:1px solid #9bcdb2;background:#edf9f1;color:#155b36;font-weight:600;border-radius:3px}
 @font-face{font-family:Cairo;src:url('/assets/fonts/cairo-700.ttf') format('truetype');font-weight:700;font-display:swap}
 @font-face{font-family:Cairo;src:url('/assets/fonts/cairo-800.ttf') format('truetype');font-weight:800;font-display:swap}
 :root{--navy:#0c2541;--blue:#175bb2;--accent:#91d9e8;--ink:#162c40;--muted:#596b7b;--line:#dbe3e9;--paper:#f3f6f8;--ease:cubic-bezier(.2,.7,.2,1)}

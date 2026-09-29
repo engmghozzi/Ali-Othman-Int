@@ -24,6 +24,28 @@
     nav.addEventListener('click', event => { if (event.target.closest('a')) close(); });
     document.addEventListener('keydown', event => { if (event.key === 'Escape' && nav.classList.contains('is-open')) { close(); menu.focus(); } });
   }
+  document.querySelectorAll('.contact-form form').forEach(form => {
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      const ar = document.documentElement.lang === 'ar';
+      const modal = document.createElement('div');
+      modal.className = 'form-modal';
+      modal.innerHTML = `<div class="form-modal-card" role="dialog" aria-modal="true"><button class="form-modal-close" type="button" aria-label="${ar ? 'إغلاق' : 'Close'}">×</button><p class="form-modal-message">${ar ? 'جارٍ إرسال طلبك…' : 'Sending your enquiry…'}</p></div>`;
+      document.body.append(modal);
+      const close = () => modal.remove();
+      modal.querySelector('.form-modal-close').addEventListener('click', close);
+      try {
+        const response = await fetch(form.action, {method:'POST', body:new FormData(form), headers:{Accept:'text/plain'}});
+        if (!response.ok) throw new Error('send failed');
+        modal.querySelector('.form-modal-message').textContent = ar ? 'تم إرسال طلبك بنجاح. سنتواصل معك قريبًا.' : 'Your enquiry was sent successfully. We will contact you soon.';
+        modal.querySelector('.form-modal-card').classList.add('is-success');
+        form.reset();
+      } catch (error) {
+        modal.querySelector('.form-modal-message').textContent = ar ? 'تعذر إرسال الطلب حاليًا. حاول مرة أخرى أو تواصل معنا عبر واتساب.' : 'The enquiry could not be sent. Please try again or contact us on WhatsApp.';
+        modal.querySelector('.form-modal-card').classList.add('is-error');
+      }
+    });
+  });
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
   if (reduce.matches || !('IntersectionObserver' in window)) return;
   const animations = new Set();

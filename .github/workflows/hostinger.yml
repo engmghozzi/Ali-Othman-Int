@@ -1,0 +1,36 @@
+name: Deploy company website to Hostinger
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: hostinger-production
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: hostinger-production
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and verify website
+        run: |
+          python3 -B build_pages.py
+          python3 -B verify_site.py
+          node --check site.js
+      - name: Configure SSH
+        env:
+          DEPLOY_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.HOSTINGER_KNOWN_HOSTS }}
+        run: |
+          test -n "$DEPLOY_KEY" && test -n "$KNOWN_HOSTS"
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/id_ed25519
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/id_ed25519 ~/.ssh/known_hosts
+      - name: Back up and upload company files only
+        env:
+          HOSTINGER_HOST: ${{ vars.HOSTINGER_HOST }}
+          HOSTINGER_PORT: ${{ vars.HOSTINGER_PORT }}
+          HOSTINGER_USER: ${{ vars.HOSTINGER_USER }}
+          HOSTINGER_ROOT: ${{ vars.HOSTINGER_ROOT }}
+        run: bash deploy/hostinger.sh

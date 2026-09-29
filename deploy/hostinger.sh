@@ -5,7 +5,7 @@ set -euo pipefail
 [[ "$HOSTINGER_HOST" =~ ^[a-zA-Z0-9.-]+$ ]]
 [[ "$HOSTINGER_PORT" =~ ^[0-9]+$ ]]
 [[ "$HOSTINGER_USER" =~ ^[a-zA-Z0-9_-]+$ ]]
-[[ "$HOSTINGER_ROOT" =~ ^/home/[a-zA-Z0-9_/-]+/public_html$ ]]
+[[ "$HOSTINGER_ROOT" =~ ^/home/[a-zA-Z0-9_./-]+/public_html$ ]]
 [[ "$HOSTINGER_ROOT" != *..* ]]
 target="$HOSTINGER_USER@$HOSTINGER_HOST"
 ssh_options=(-p "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=yes)

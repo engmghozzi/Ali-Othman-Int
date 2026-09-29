@@ -29,7 +29,8 @@ def contact_form(lang):
     button = 'إرسال الطلب' if ar else 'Send enquiry'
     return f'''<div class="contact-form panel">
       <h2>{heading}</h2><p class="lead">{intro}</p>
-      <form action="https://formsubmit.co/info@aliandothman.com.kw" method="POST" target="_blank" rel="noopener noreferrer" accept-charset="UTF-8">
+      <form action="https://formsubmit.co/info@aliandothman.com.kw" method="POST" target="_blank" rel="noopener" accept-charset="UTF-8">
+        <input type="hidden" name="_url" value="https://aliandothman.com.kw/{lang}/contact/">
         <input type="hidden" name="_cc" value="aliothmanintl@gmail.com">
         <input type="hidden" name="_subject" value="طلب اتصال جديد | Ali &amp; Othman Website Enquiry">
         <input type="hidden" name="_template" value="table">

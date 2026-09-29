@@ -3,7 +3,7 @@ from html import escape
 def contact_form(lang):
     ar = lang == 'ar'
     def field(key, label, kind='text', required=True, autocomplete=None, placeholder=None, maxlength=120):
-        attrs = f' id="contact-{key}" name="{escape(label)}" type="{kind}" maxlength="{maxlength}"'
+        attrs = f' id="contact-{key}" name="{key}" type="{kind}" maxlength="{maxlength}"'
         if required: attrs += ' required'
         if autocomplete: attrs += f' autocomplete="{autocomplete}"'
         if placeholder: attrs += f' placeholder="{placeholder}"'
@@ -24,7 +24,7 @@ def contact_form(lang):
     fields += '</div>'
     fields += field('time', 'الوقت المفضل للاتصال' if ar else 'Preferred callback time', placeholder='مثال: من ٤ إلى ٦ مساءً بتوقيت الكويت' if ar else 'e.g. 4–6 PM, Kuwait time')
     description = 'الوصف' if ar else 'Description'
-    fields += f'<div class="form-field"><label for="contact-description">{description}</label><textarea id="contact-description" name="{description}" rows="5" maxlength="5000" required></textarea></div>'
+    fields += f'<div class="form-field"><label for="contact-description">{description}</label><textarea id="contact-description" name="description" rows="5" maxlength="5000" required></textarea></div>'
     note = 'بالإرسال، تُرسل بياناتك عبر FormSubmit إلى فريقنا للتواصل بشأن طلبك. ستفتح صفحة إتمام الإرسال والتحقق في نافذة جديدة.' if ar else 'Your details are sent through FormSubmit to our team to follow up on your enquiry. Submission and verification will continue in a new tab.'
     button = 'إرسال الطلب' if ar else 'Send enquiry'
     return f'''<div class="contact-form panel">

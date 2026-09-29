@@ -5,7 +5,7 @@ import sys
 
 root=Path(__file__).resolve().parent
 output=Path(sys.argv[1]) if len(sys.argv)>1 else root.parent/'ali-othman-professional-v2.zip'
-allowed=['ar','en','assets','index.html','ao-website.css','site.js']
+allowed=['ar','en','assets','index.html','ao-website.css','site.js','submit.php']
 with ZipFile(output,'w',ZIP_DEFLATED) as archive:
     for name in allowed:
         entry=root/'dist'/name

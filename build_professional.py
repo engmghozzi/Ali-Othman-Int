@@ -74,6 +74,7 @@ def build():
  OUT.mkdir(exist_ok=True)
  (OUT/'ao-website.css').write_text(Path('professional.css').read_text(encoding='utf-8'),encoding='utf-8')
  (OUT/'site.js').write_text(Path('site.js').read_text(encoding='utf-8'),encoding='utf-8')
+ (OUT/'submit.php').write_text(Path('submit.php').read_text(encoding='utf-8'),encoding='utf-8')
  for lang,t in COPY.items():
   for page,render in enumerate([home,about,services,contact,brochures]):
    title=t['name']+' | '+t['nav'][page]; desc=[t['intro'],t['about_text'],t['service_intro'],t['contact_intro'],t['brochure_intro']][page]

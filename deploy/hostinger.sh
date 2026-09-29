@@ -11,7 +11,7 @@ target="$HOSTINGER_USER@$HOSTINGER_HOST"
 ssh_options=(-p "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=yes)
 release="${GITHUB_RUN_ID:?}-${GITHUB_RUN_ATTEMPT:?}"
 backup="${HOSTINGER_ROOT%/public_html}/company-site-backups/$release"
-paths=(assets ar en ao-website.css site.js index.html)
+paths=(assets ar en ao-website.css site.js index.html submit.php)
 # Validate the actual root and every destination path before writing anything.
 # Existing symlinks are rejected, including links inside the three website folders.
 ssh "${ssh_options[@]}" "$target" bash -s -- "$HOSTINGER_ROOT" "$backup" <<'REMOTE'
@@ -21,7 +21,7 @@ backup="$2"
 test -d "$root"
 test "$(realpath "$root")" = "$root"
 command -v rsync >/dev/null
-for item in assets ar en ao-website.css site.js index.html; do
+for item in assets ar en ao-website.css site.js index.html submit.php; do
   path="$root/$item"
   test ! -L "$path"
   if test -d "$path"; then

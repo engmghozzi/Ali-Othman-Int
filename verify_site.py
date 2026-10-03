@@ -31,7 +31,7 @@ for file,page in pages.items():
         if value.fragment and dest in pages:assert value.fragment in pages[dest].ids,(file,link)
 for lang in ['ar','en']:
     services=pages[root/lang/'services/index.html']
-    assert len([x for x in services.ids if x in ['air-conditioning','duct-installation','duct-cleaning','electrical','plumbing','cctv','interiors']])==7
+    assert len([x for x in services.ids if x in ['ac','duct','chimney','electrical','plumbing','cctv','interiors']])==7
     form=pages[root/lang/'contact/index.html'].forms[0]
     assert form['action']=='/submit.php'
     assert form['method']=='POST'

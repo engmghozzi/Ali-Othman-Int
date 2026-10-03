@@ -1,0 +1,18 @@
+
+(() => {
+'use strict'; const reduced=matchMedia('(prefers-reduced-motion: reduce)');let scrollY=window.scrollY;addEventListener('scroll',()=>{scrollY=window.scrollY;},{passive:true});const stopReveals=()=>{};
+ const canvases=[...document.querySelectorAll('.flow-canvas')];const scenes=[];let pointer={x:.6,y:.45},anim=0,visible=true;
+ addEventListener('pointermove',e=>{pointer.x=e.clientX/innerWidth;pointer.y=e.clientY/innerHeight;},{passive:true});
+ for(const canvas of canvases){const ctx=canvas.getContext('2d');if(!ctx)continue;const scene={canvas,ctx,w:0,h:0,active:true};scenes.push(scene);const resize=()=>{const r=canvas.getBoundingClientRect();scene.w=r.width;scene.h=r.height;const d=Math.min(devicePixelRatio||1,1.5);canvas.width=Math.round(r.width*d);canvas.height=Math.round(r.height*d);ctx.setTransform(d,0,0,d,0,0);};resize();if('ResizeObserver'in window)new ResizeObserver(()=>{resize();if(reduced.matches)draw(scene,0);}).observe(canvas.parentElement);if('IntersectionObserver'in window)new IntersectionObserver(es=>{scene.active=es[0].isIntersecting;}).observe(canvas);}
+ function draw(s,time){const {ctx:c,w,h}=s;if(!w||!h)return;c.clearRect(0,0,w,h);const t=time*.00017,px=reduced.matches?.6:pointer.x,py=reduced.matches?.45:pointer.y;const cx=w*(.62+(px-.5)*.08),cy=h*(.43+(py-.5)*.07);const g=c.createRadialGradient(cx,cy,0,cx,cy,w*.58);g.addColorStop(0,'rgba(45,95,245,.27)');g.addColorStop(.45,'rgba(22,55,140,.16)');g.addColorStop(1,'rgba(5,8,18,0)');c.fillStyle=g;c.fillRect(0,0,w,h);c.save();c.translate(cx,cy-scrollY*.035);c.globalCompositeOperation='screen';
+ // Layered abstract airflow: depth, perspective and a gentle pointer response.
+ for(let j=0;j<64;j++){const depth=j/63,rotation=.45+Math.sin(t+depth*2)*.17;c.beginPath();for(let i=0;i<=130;i++){const angle=i/130*Math.PI*2;const wave=1+Math.sin(angle*3+t*2+depth*5)*.12;const rx=(w*.12+depth*w*.35)*wave,ry=(h*.075+depth*h*.22)*wave;const x=Math.cos(angle)*rx,y=Math.sin(angle)*ry;const xx=x*Math.cos(rotation)-y*Math.sin(rotation),yy=x*Math.sin(rotation)+y*Math.cos(rotation)+Math.sin(depth*5+t)*h*.055;if(i===0)c.moveTo(xx,yy);else c.lineTo(xx,yy);}c.closePath();c.strokeStyle=`rgba(${90+Math.round(depth*45)},${135+Math.round(depth*50)},255,${.13+Math.sin(depth*Math.PI)*.3})`;c.lineWidth=depth>.75?1.1:.65;c.stroke();}c.restore();}
+ let last=0;function loop(time){if(visible&&time-last>32){scenes.forEach(s=>{if(s.active)draw(s,time);});last=time;}if(!reduced.matches)anim=requestAnimationFrame(loop);}
+ const start=()=>{cancelAnimationFrame(anim);if(reduced.matches)scenes.forEach(s=>draw(s,0));else anim=requestAnimationFrame(loop);};start();
+ reduced.addEventListener('change',()=>{stopReveals();start();});document.addEventListener('visibilitychange',()=>{visible=!document.hidden;if(visible)start();else cancelAnimationFrame(anim);});addEventListener('pagehide',()=>{cancelAnimationFrame(anim);stopReveals();});addEventListener('pageshow',e=>{if(e.persisted){stopReveals();start();scrollY=window.scrollY;}});addEventListener('beforeprint',stopReveals);
+})();
+(() => {
+ const open=()=>{const card=document.getElementById(location.hash.slice(1));const details=card?.querySelector('.service-details');if(details)details.open=true;};
+ addEventListener('hashchange',open);open();
+ document.addEventListener('click',event=>{const link=event.target.closest('.lusion-card a[href]');if(!link)return;const url=new URL(link.href,location.href);if(url.pathname===location.pathname&&url.hash){const details=document.getElementById(url.hash.slice(1))?.querySelector('.service-details');if(details)details.open=true;}});
+})();

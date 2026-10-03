@@ -25,7 +25,7 @@ def contact_form(lang):
     fields += field('time', 'الوقت المفضل للاتصال' if ar else 'Preferred callback time', placeholder='مثال: من ٤ إلى ٦ مساءً بتوقيت الكويت' if ar else 'e.g. 4–6 PM, Kuwait time')
     description = 'الوصف' if ar else 'Description'
     fields += f'<div class="form-field"><label for="contact-description">{description}</label><textarea id="contact-description" name="description" rows="5" maxlength="5000" required></textarea></div>'
-    note = 'بالإرسال، تُرسل بياناتك عبر FormSubmit إلى فريقنا للتواصل بشأن طلبك. ستفتح صفحة إتمام الإرسال والتحقق في نافذة جديدة.' if ar else 'Your details are sent through FormSubmit to our team to follow up on your enquiry. Submission and verification will continue in a new tab.'
+    note = 'تُرسل بياناتك إلى فريقنا للتواصل بشأن طلبك. ستظهر نتيجة الإرسال في هذه الصفحة.' if ar else 'Your details are sent to our team to follow up on your enquiry. The submission result appears on this page.'
     button = 'إرسال الطلب' if ar else 'Send enquiry'
     return f'''<div class="contact-form panel">
       <h2>{heading}</h2><p class="lead">{intro}</p>

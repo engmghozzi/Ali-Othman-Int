@@ -1,6 +1,9 @@
 name: Deploy company website to Hostinger
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [deploy/release.json]
 permissions:
   contents: read
 concurrency:
@@ -16,7 +19,7 @@ jobs:
         run: |
           python3 -B build_pages.py
           python3 -B verify_site.py
-          node --check site.js
+          node --check dist/site.js
       - name: Configure SSH
         env:
           DEPLOY_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
